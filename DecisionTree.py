@@ -25,7 +25,7 @@ class DTLearner(object):
 
         left_subtree = self.build_tree(Xtrain[left_data_indices], Ytrain[left_data_indices])
         right_subtree = self.build_tree(Xtrain[right_data_indices], Ytrain[right_data_indices])
-        root = np.array([[index, value, 1, left_subtree.shape[0]+1]]) #https://www.youtube.com/watch?v=WVc3cjvDHhw&list=LL&t=2263
+        root = np.array([[index, value, 1, left_subtree.shape[0]+1]])
 
         self.tree = np.concatenate((root, left_subtree, right_subtree), axis=0)
 
@@ -37,9 +37,7 @@ class DTLearner(object):
         correlation_with_YTrain = correlation_coef[:-1,-1]
         max_corr_index = np.argmax(np.abs(correlation_with_YTrain))
         return max_corr_index
-
-    def author(self):
-        return "adandia3"  # replace tb34 with your Georgia Tech username
+        
     def add_evidence(self, Xtrain, Ytrain):
         self.tree = self.build_tree(Xtrain,Ytrain)
     def query(self, Xtest):
