@@ -23,6 +23,7 @@ The window size we’ve selected for both Manual and Strategy Learner is a 7 Day
 EMA is a derivative of simple moving average (SMA), which is intended to understand trends with the share price over specific time frames. EMA emphasizes on more recent time frames, while SMA puts an equal weight on all observed share prices. For this implementation we leveraged a calculation as follows:
 
 ![Figure0](https://github.com/dandia89/personal-projects/blob/master/DecisionTree/Figure0_EMAFormula.png)
+
 **_Figure 1-_** EMA Formula (Chen, 2024)
 
 We vectorized the EMA by taking the share price dividing by the EMA value and subtracted 1. The larger value indicates the share price is higher than the EMA, aka the current stock price is trading higher than the average and vice-versa for a lower value.
@@ -73,9 +74,14 @@ For our in-sample data set (January 1, 2008 to December 31, 2009), we compare th
 
 For our Manual Strategy, as seen below in Figure 1, the vertical blue lines indicate a LONG position, and the vertical black lines indicate a SHORT position. Our in-sample Manual Strategy outperforms the benchmark by a significant margin.
 
+
+![Figure1](https://github.com/dandia89/personal-projects/blob/master/DecisionTree/Figure1_MS_In.png)
+
 **_Figure 1—_**In-Sample Manual Strategy and Benchmark performance normalized for JPM Stock Price (Jan 1 2008 to Dec 31, 2009)
 
 For our out-of-sample data (January 1 2010 to December 31, 2011) in Figure 2, we notice a marginal increase to our benchmark with less trades than our in-sample results. This also resulted a less optimal return.
+
+![Figure2](https://github.com/dandia89/personal-projects/blob/master/DecisionTree/Figure2_MS_Out.png)
 
 **_Figure 2—_** Out-of-Sample Manual Strategy and Benchmark performance normalized for JPM Stock Price (Jan 1 2010 to Dec 31, 2011)
 
@@ -120,8 +126,11 @@ The reason we discretized these values with YBUY and YSELL into (1,0,-1) so we c
 
 Looking at Figure 3 and Figure 4, both in-sample and out-of-sample out perform the Benchmark strategy, which aligns with our hypothesis. For the Manual and Strategy Learner we tweaked the parameters for our in-sample performance, therefore the model is inherently overfit for this data set and the stock symbol JPM. This is observed as we utilize our model for our out-of-sample data with marginal returns in comparison. With significant experimentation, I believe this is the unfortunate reality of stock trading. The assumption of these models is that historical data is indicative of future stock price, which is not always a reality. For our Strategy if the learner is trained on in-sample data, it will inherently out-perform a Manual Strategy due to the number of iterations of the machine learning algorithm and cross validation. Since the Strategy Learner was tuned for in-sample data, it underperformed against the Manual Strategy for out-of-sample. From my understanding it indicates the Strategy was much more overfitted for in-sample relative to the Manual Strategy, therefore more tuning would be required.
 
+![Figure3](https://github.com/dandia89/personal-projects/blob/master/DecisionTree/Figure3_MS_SL_In_report.png))
+
 **_Figure 3—_** In-Sample Manual Strategy, Strategy Learner and Benchmark performance normalized for JPM Stock Price (Jan 1 2008 to Dec 31, 2009)
 
+[![Figure4])](https://github.com/dandia89/personal-projects/blob/master/DecisionTree/Figure4_MS_SL_Out.png)
 **_Figure 4—_** Out-of-Sample Manual Strategy, Strategy Learner, and Benchmark performance normalized for JPM Stock Price (Jan 1 2008 to Dec 31, 2009)
 
 # 6 EXPERIMENT 2
@@ -132,7 +141,10 @@ Since our YBUY and YSELL hyperparameters are developed based off impact, and our
 
 For Figure 6, we notice that an impact has a significant change on our portfolio returns, anything greater than 0.0, our portfolio returns would be negative. This is due to the hyperparameters of YBUY and YSELL are not optimized to an impact of 0, and the portfolio returns are changed significantly due to the amount of trades observed. We are ranging 105-70 trades in two years, which is why our returns are reduced.
 
+![Figure5](https://github.com/dandia89/personal-projects/blob/master/DecisionTree/Figure5_Impact_trades.png)
 **_Figure 5—_**Number of trades observed for Impact 0.0, 0.05 and 0.10 utilizing Strategy Learner for JPM Stock Price (Jan 1 2008 to Dec 31, 2009)
+
+![Figure6](https://github.com/dandia89/personal-projects/blob/master/DecisionTree/Figure6_Impact_values.png)
 
 **_Figure 6—_** Normalized Portfolio Values for Impact 0.0, 0.05 and 0.10 utilizing Strategy Learner for JPM Stock Price (Jan 1 2008 to Dec 31, 2009)
 
