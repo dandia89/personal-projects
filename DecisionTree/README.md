@@ -22,6 +22,7 @@ The window size we’ve selected for both Manual and Strategy Learner is a 7 Day
 
 EMA is a derivative of simple moving average (SMA), which is intended to understand trends with the share price over specific time frames. EMA emphasizes on more recent time frames, while SMA puts an equal weight on all observed share prices. For this implementation we leveraged a calculation as follows:
 
+![Figure0](https://github.com/dandia89/personal-projects/blob/master/DecisionTree/Figure0_EMAFormula.png)
 **_Figure 1-_** EMA Formula (Chen, 2024)
 
 We vectorized the EMA by taking the share price dividing by the EMA value and subtracted 1. The larger value indicates the share price is higher than the EMA, aka the current stock price is trading higher than the average and vice-versa for a lower value.
